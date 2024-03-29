@@ -1,4 +1,4 @@
-package co.edu.uniquindio.software3.endidades;
+package co.edu.uniquindio.software3.entidades;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
