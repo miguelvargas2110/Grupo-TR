@@ -1,22 +1,22 @@
 package co.edu.uniquindio.software3.entidades;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString(callSuper = true)
 public class Caso implements Serializable {
 
     @Id
     @Column(length = 10,nullable = false,unique = true)
-    private Integer numeroCaso;
+    private Integer idCaso;
 
     @Column(nullable = false,length = 10)
     private String fechaRecepcion;
@@ -28,7 +28,7 @@ public class Caso implements Serializable {
     private String sentencia;
 
     @Column(nullable = false,length = 20)
-    private String tipoCaso;
+    private Especializacion tipoCaso;
 
     @Column(length = 20)
     private String fechaResolucion;
@@ -39,18 +39,18 @@ public class Caso implements Serializable {
     @Column(length = 30)
     private Double valorCaso;
 
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Abogado abogado;
 
-    @Builder
-    public Caso(Integer numeroCaso, String fechaRecepcion, String estado, String sentencia, String tipoCaso, String fechaResolucion, String descripcion, Double valorCaso) {
-        this.numeroCaso = numeroCaso;
-        this.fechaRecepcion = fechaRecepcion;
-        this.estado = estado;
-        this.sentencia = sentencia;
-        this.tipoCaso = tipoCaso;
-        this.fechaResolucion = fechaResolucion;
-        Descripcion = descripcion;
-        this.valorCaso = valorCaso;
-    }
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Cliente cliente;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "caso")
+    private List<Audiencia> audiencias;
+
 
 
 }
