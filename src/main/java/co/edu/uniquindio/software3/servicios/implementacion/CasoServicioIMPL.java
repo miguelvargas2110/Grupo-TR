@@ -1,6 +1,6 @@
 package co.edu.uniquindio.software3.servicios.implementacion;
 
-import co.edu.uniquindio.software3.endidades.Caso;
+import co.edu.uniquindio.software3.entidades.Caso;
 import co.edu.uniquindio.software3.repo.CasoRepo;
 import co.edu.uniquindio.software3.servicios.interfaces.CasoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
