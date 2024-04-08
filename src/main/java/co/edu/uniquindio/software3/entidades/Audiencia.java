@@ -15,6 +15,7 @@ public class Audiencia {
     private Integer idAudiencia;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoAudiencia tipoAudiencia;
 
     @Column(nullable = false,length = 20)

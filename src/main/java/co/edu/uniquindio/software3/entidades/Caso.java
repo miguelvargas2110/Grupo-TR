@@ -10,24 +10,25 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString(callSuper = true)
 public class Caso implements Serializable {
 
     @Id
-    @Column(length = 10,nullable = false,unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCaso;
 
     @Column(nullable = false,length = 10)
     private String fechaRecepcion;
 
     @Column(nullable = false,length = 10)
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private Estado estado;
 
     @Column(length = 20)
     private String sentencia;
 
     @Column(nullable = false,length = 20)
+    @Enumerated(EnumType.STRING)
     private Especializacion tipoCaso;
 
     @Column(length = 20)

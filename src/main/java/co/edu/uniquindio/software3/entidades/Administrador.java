@@ -1,6 +1,17 @@
 package co.edu.uniquindio.software3.entidades;
 
+import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString(callSuper = true)
 
 public class Administrador extends Persona implements Serializable {
 
