@@ -14,8 +14,8 @@ public class Audiencia {
     @Column(length = 10,nullable = false,unique = true)
     private Integer idAudiencia;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private TipoAudiencia tipoAudiencia;
 
     @Column(nullable = false,length = 20)

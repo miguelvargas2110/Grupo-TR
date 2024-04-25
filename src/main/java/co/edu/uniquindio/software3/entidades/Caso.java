@@ -20,15 +20,15 @@ public class Caso implements Serializable {
     @Column(nullable = false,length = 10)
     private String fechaRecepcion;
 
-    @Column(nullable = false,length = 10)
-    @Enumerated(EnumType.STRING)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Estado estado;
 
     @Column(length = 20)
     private String sentencia;
 
-    @Column(nullable = false,length = 20)
-    @Enumerated(EnumType.STRING)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Especializacion tipoCaso;
 
     @Column(length = 20)

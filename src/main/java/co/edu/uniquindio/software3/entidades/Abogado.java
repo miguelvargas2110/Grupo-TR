@@ -14,16 +14,20 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Abogado extends Persona implements Serializable  {
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Disponibilidad disponibilidad;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Especializacion especializacion;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "abogado")
     private List<Caso> casos;
+
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Rol rol;
 
 }

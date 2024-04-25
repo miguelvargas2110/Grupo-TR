@@ -1,6 +1,9 @@
 package co.edu.uniquindio.software3.entidades;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +18,13 @@ import java.io.Serializable;
 
 public class Administrador extends Persona implements Serializable {
 
+
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Rol rol;
     public Administrador(Integer idPersona, String nombre, String apellido, String telefono, String Email, String password, Rol rol) {
-        super(idPersona, nombre, apellido, telefono, Email, password, rol);
+        super(idPersona, nombre, apellido, telefono, Email, password);
     }
+
+
 }

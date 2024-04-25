@@ -1,9 +1,6 @@
 package co.edu.uniquindio.software3.entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -22,5 +19,9 @@ public class Cliente extends Persona{
     @ToString.Exclude
     @OneToMany(mappedBy = "cliente")
     private List<Caso> casos;
+
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private Rol rol;
 
 }
