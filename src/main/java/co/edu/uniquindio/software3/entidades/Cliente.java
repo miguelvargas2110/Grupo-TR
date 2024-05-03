@@ -13,7 +13,7 @@ import java.util.List;
 @ToString(callSuper = true)
 public class Cliente extends Persona{
 
-   @Column(nullable = false,length = 200)
+   @Column(length = 300)
     private String infoCaso;
 
     @ToString.Exclude

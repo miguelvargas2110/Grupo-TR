@@ -14,8 +14,8 @@ import java.util.List;
 public class Rol {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(length = 10, nullable = false, unique = true)
+    private String id;
 
     private String rol;
 

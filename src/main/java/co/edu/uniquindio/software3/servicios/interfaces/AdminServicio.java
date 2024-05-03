@@ -4,10 +4,8 @@ import co.edu.uniquindio.software3.dto.ClienteDTO;
 import co.edu.uniquindio.software3.dto.CredentialsDTO;
 import co.edu.uniquindio.software3.dto.SignUpDTO;
 
-public interface ClienteServicio {
+public interface AdminServicio {
     ClienteDTO login(CredentialsDTO credentialsDto);
-    ClienteDTO register(SignUpDTO clienteDTO);
-    ClienteDTO findByEmail(String login);
-
-    ClienteDTO findById(String id);
+    ClienteDTO register(SignUpDTO adminDTO);
+    ClienteDTO findByLogin(String login);
 }
