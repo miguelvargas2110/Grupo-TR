@@ -35,7 +35,7 @@ public class AuthController {
     public ResponseEntity<ClienteDTO> register(@RequestBody @Valid SignUpDTO cliente) {
         ClienteDTO createdCliente = clienteService.register(cliente);
         System.out.println("createdCliente: " + createdCliente);
-        createdCliente.setToken(clienteAuthenticationProvider.createToken(cliente.getId()));
+        createdCliente.setToken(clienteAuthenticationProvider.createToken(cliente.getEmail()));
         return ResponseEntity.created(URI.create("/clientes/" + createdCliente.getId())).body(createdCliente);
 
     }

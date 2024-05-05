@@ -52,7 +52,7 @@ public class UserAuthenticationProvider {
 
         DecodedJWT decoded = verifier.verify(token);
 
-        ClienteDTO cliente = clienteService.findById(decoded.getSubject());
+        ClienteDTO cliente = clienteService.findByEmail(decoded.getSubject());
 
         return new UsernamePasswordAuthenticationToken(cliente, null, Collections.emptyList());
     }

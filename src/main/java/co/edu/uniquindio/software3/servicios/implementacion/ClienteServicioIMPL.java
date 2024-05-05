@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.nio.CharBuffer;
-import java.util.Objects;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -30,21 +29,27 @@ public class ClienteServicioIMPL implements ClienteServicio {
     @Override
     public ClienteDTO login(CredentialsDTO credentialsDto) {
         Cliente cliente = clienteRepo.findByEmail(credentialsDto.getLogin())
-                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new AppException("No se encontro el usuario, revisalo o sino estas registrado, registrate", HttpStatus.NOT_FOUND));
 
         if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.getPassword()), cliente.getPassword())) {
             return clienteMapper.toClienteDto(cliente);
         }
-        throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
+        throw new AppException("La constraseña es incorrecta", HttpStatus.BAD_REQUEST);
     }
 
     @Override
     public ClienteDTO register(SignUpDTO clienteDto) {
         Optional<Cliente> optionalUser = clienteRepo.findById(clienteDto.getId());
+        Optional<Cliente> optionalUserByEmail = clienteRepo.findByEmail(clienteDto.getEmail());
 
-        if (Objects.requireNonNull(optionalUser).isPresent()) {
-            throw new AppException("id already exists", HttpStatus.BAD_REQUEST);
+        if (optionalUser.isPresent()) {
+            throw new AppException("Tu cedula ya esta registrada, verificala o intenta con otra", HttpStatus.BAD_REQUEST);
         }
+
+        if (optionalUserByEmail.isPresent()) {
+            throw new AppException("El email ya esta registrado, verifica que este correcto o intenta con otro", HttpStatus.BAD_REQUEST);
+        }
+
 
         Cliente cliente = clienteMapper.signUpToCliente(clienteDto);
         cliente.setPassword(passwordEncoder.encode(CharBuffer.wrap(clienteDto.getPassword())));
@@ -53,6 +58,7 @@ public class ClienteServicioIMPL implements ClienteServicio {
 
         return clienteMapper.toClienteDto(savedUser);
     }
+
 
 
     @Override
